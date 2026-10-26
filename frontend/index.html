@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e8e8e6" />
+    <title>Palisight | Web security intelligence</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="#command" aria-label="Palisight dashboard"><span class="brand-mark">P</span><span>Palisight</span></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <button class="nav-link active" data-view="command">Dashboard</button>
+        <button class="nav-link" data-view="command" data-focus-scan="true">New assessment</button>
+        <button class="nav-link" data-view="history">Assessment history</button>
+        <button class="nav-link" data-view="report">Reports</button>
+        <button class="nav-link" data-view="policy">Policy studio</button>
+      </nav>
+      <button class="settings-button" type="button" aria-label="Workspace settings">Settings</button>
+    </header>
+
+    <main class="app-main">
+      <section id="command" class="view active">
+        <div class="page-heading">
+          <div><p class="eyebrow">Web security intelligence</p><h1>Website security overview</h1></div>
+          <p class="heading-note">A clear, non-intrusive view of public web posture.</p>
+        </div>
+
+        <form id="scan-form" class="scan-console">
+          <label for="target-url">Assess a public website</label>
+          <div class="scan-row">
+            <input id="target-url" name="target-url" type="url" placeholder="https://example.com" autocomplete="url" required />
+            <button class="primary-button" type="submit">Run assessment</button>
+          </div>
+          <p>Use a public HTTP(S) address. The assessment checks externally visible configuration only.</p>
+        </form>
+        <div id="scan-alert" class="alert" role="status" aria-live="polite"></div>
+        <div id="report-preview"></div>
+      </section>
+
+      <section id="report" class="view" aria-labelledby="report-title">
+        <div class="page-heading report-heading">
+          <div><p class="eyebrow">Report center</p><h1 id="report-title">Assessment report</h1><p id="report-subtitle" class="heading-note"></p></div>
+          <div class="report-actions"><button id="download-json" class="quiet-button" type="button">Download JSON</button><button id="print-report" class="primary-button" type="button">Print / Save PDF</button></div>
+        </div>
+        <div id="full-report"></div>
+      </section>
+
+      <section id="history" class="view">
+        <div class="page-heading"><div><p class="eyebrow">Assessment archive</p><h1>Recent assessments</h1></div><p class="heading-note">Your latest local assessment summaries.</p></div>
+        <div id="history-list" class="archive-list"></div>
+      </section>
+
+      <section id="policy" class="view">
+        <div class="page-heading"><div><p class="eyebrow">Policy studio</p><h1>Assessment baseline</h1></div><p class="heading-note">A transparent explanation of what the posture score measures.</p></div>
+        <div class="policy-grid">
+          <article class="policy-card lime"><p class="card-kicker">Current baseline</p><h2>Public-web essentials</h2><p>Transport security, response headers, cookie controls, exposed paths, and page-resource signals are measured without active exploitation.</p></article>
+          <article class="policy-card"><p class="card-kicker">How to use it</p><h2>Set a repeatable standard</h2><p>Use the same baseline before releases, after infrastructure changes, and to compare remediation progress between assessments.</p></article>
+          <article class="policy-card"><p class="card-kicker">Safety boundary</p><h2>Configuration review only</h2><p>The scanner accepts public HTTP(S) URLs, blocks private network destinations, and keeps request volume deliberately small.</p></article>
+        </div>
+      </section>
+    </main>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
